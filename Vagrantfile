@@ -1,6 +1,7 @@
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "boxcutter/ubuntu1604-desktop"
+  config.vm.box_version = "17.0907.1"
 
   config.vm.provider "virtualbox" do |vb|
     #   # Display the VirtualBox GUI when booting the machine
@@ -29,11 +30,18 @@ Vagrant.configure(2) do |config|
     git config --global user.name "Emanuel Ciuca"
     git config --global user.email "emanuel@webgenerals.com"
 
+    git config --global alias.co checkout
+    git config --global alias.br branch
+    git config --global alias.ci commit
+    git config --global alias.st status
+    git config --global alias.unstage 'reset HEAD --'
+    git config --global alias.last 'log -1 HEAD'
+
     # INSTALL JDK 8
     sudo apt-get install -y openjdk-8-jdk
 
     # INSTALL NODE
-    curl -sL https://deb.nodesource.com/setup | bash -
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
     apt-get install -y nodejs
     ln -s /usr/bin/nodejs /usr/bin/node
 
@@ -45,9 +53,5 @@ Vagrant.configure(2) do |config|
 
     # INSTALL GOOGLE CHROME
     apt install -y google-chrome-stable
-
-    # INSTALL X011
-    apt-get install xauth
-
    SHELL
 end
