@@ -10,7 +10,18 @@ Vagrant.configure(2) do |config|
     vb.memory = "8192"
   end
 
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+
   config.vm.provision "shell", inline: <<-SHELL
+
+    # APT REPOS
+
+    # GOOGLE CHROME
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list
+    wget https://dl.google.com/linux/linux_signing_key.pub
+    apt-key add linux_signing_key.pub
+
     apt-get update
 
     # INSTALL GIT
@@ -20,6 +31,23 @@ Vagrant.configure(2) do |config|
 
     # INSTALL JDK 8
     sudo apt-get install -y openjdk-8-jdk
+
+    # INSTALL NODE
+    curl -sL https://deb.nodesource.com/setup | bash -
+    apt-get install -y nodejs
+    ln -s /usr/bin/nodejs /usr/bin/node
+
+    # INSTALL NODE
+    apt install -y npm
+
+    # INSTALL SUBLIME TEXT 3
+    apt-get install -y sublime-text
+
+    # INSTALL GOOGLE CHROME
+    apt install -y google-chrome-stable
+
+    # INSTALL X011
+    apt-get install xauth
 
    SHELL
 end
