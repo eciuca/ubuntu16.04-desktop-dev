@@ -54,6 +54,7 @@ Vagrant.configure(2) do |config|
     git config --global alias.st status
     git config --global alias.unstage 'reset HEAD --'
     git config --global alias.last 'log -1 HEAD'
+    git config --global push.default simple
 
     # INSTALL JDK 8
     apt-get install -y openjdk-8-jdk
