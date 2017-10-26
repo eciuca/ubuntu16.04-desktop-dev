@@ -1,14 +1,13 @@
 #!/bin/sh
 . /home/vagrant/scripts/utils/isInstalled.sh
 
-package=openjdk-8-jdk
 
 install_jdk8() {
-	if [ $(isInstalled $package) ]; 
-		then return;
-		else echo "Installing and configuring Open JDK 8...";
-	fi
+	package=openjdk-8-jdk
 
+	if isInstalled $package; then return; fi
+	echo "Installing and configuring Open JDK 8 (package: $package)...";
+	
 	# INSTALL
 	apt-get install -y $package
 }

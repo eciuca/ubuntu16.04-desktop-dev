@@ -4,11 +4,9 @@
 package=maven
 
 install_maven() {
-	if [ $(isInstalled $package) ]; 
-		then return;
-		else echo "Installing and configuring Maven...";
-	fi
+        if isInstalled $package; then return; fi
+        echo "Installing and configuring Maven (package: $package)..."
 
-	# INSTALL
-	apt-get install -y $package
+        # INSTALL
+        apt-get install -y $package
 }

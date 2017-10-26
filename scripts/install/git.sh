@@ -1,13 +1,11 @@
 #!/bin/sh
 . /home/vagrant/scripts/utils/isInstalled.sh
 
-package=git-all
-
 install_git() {
-	if [ $(isInstalled $package) ]; 
-		then exit
-		else echo "Installing and configuring Git..."
-	fi
+	package=git-all
+
+	if isInstalled $package; then return; fi
+	echo "Installing and configuring Git (package: $package)..."
 
 	# CLEANUP
 	apt-get purge -y git

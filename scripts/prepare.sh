@@ -1,11 +1,10 @@
-
-function prepare() 
-{ 
-	ln -s /home/vagrant/scripts/utils/install.sh ~/install.sh
-
-	chmod +x ~/scripts/*.sh
-	chmod +x ~/scripts/utils/*.sh
-	chmod +x ~/scripts/install/*.sh
+#!/bin/sh
+prepare() 
+{	
+	vagrant_home=/home/vagrant
+	chmod +x $vagrant_home/scripts/*.sh
+	chmod +x $vagrant_home/scripts/utils/*.sh
+	chmod +x $vagrant_home/scripts/install/*.sh
 
 	apt-get autoremove -y
 }

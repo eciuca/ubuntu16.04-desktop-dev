@@ -1,13 +1,11 @@
 #!/bin/sh
 . /home/vagrant/scripts/utils/isInstalled.sh
 
-package=openjdk-7-jdk
-
 install_jdk7() {
-	if [ $(isInstalled $package) ]; 
-		then return;
-		else echo "Installing and configuring Open JDK 7...";
-	fi
+	package=openjdk-7-jdk
+
+	if isInstalled $package; then return; fi
+	echo "Installing and configuring Open JDK 7 (package: $package)..."
 
 	# INSTALL
 	apt-get install -y $package

@@ -1,13 +1,11 @@
 #!/bin/sh
 . /home/vagrant/scripts/utils/isInstalled.sh
 
-package=docker-ce
-
 install_docker() {
-	if [ $(isInstalled $package) ]; 
-		then return;
-		else echo "Installing and configuring Docker...";
-	fi
+	package=docker-ce
+
+	if isInstalled $package; then return; fi
+	echo "Installing and configuring Docker (package: $package)..."
 
 	# CLEANUP
 	apt-get remove -y docker docker-engine docker.io
@@ -18,10 +16,8 @@ install_docker() {
 	apt-key fingerprint 0EBFCD88
 	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-	apt-get update
-
 	# INSTALL
-	apt-get install -y $package
+	apt-get update &&apt-get install -y $package
 
 	# CONFIGURE
 	gpasswd -a vagrant docker

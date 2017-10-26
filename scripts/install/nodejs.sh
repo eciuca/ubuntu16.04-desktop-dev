@@ -1,14 +1,15 @@
 #!/bin/sh
 . /home/vagrant/scripts/utils/isInstalled.sh
 
-package=nodejs
-
 install_nodejs() {
-	if [ $(isInstalled $package) ]; 
-		then return;
-		else echo "Installing and configuring Node JS...";
-	fi
+	package=nodejs
+
+	if isInstalled $package; then return; fi
+	echo "Installing and configuring Node JS (package: $package)..."
+
+	# PREPARE
+	curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh | bash -E nodesource_setup.sh
 
 	# INSTALL
-	apt-get install -y $package
+	apt-get update && apt-get install -y $package build-essential
 }
