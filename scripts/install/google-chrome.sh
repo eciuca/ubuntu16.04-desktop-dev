@@ -1,6 +1,7 @@
 #!/bin/sh
-. /home/vagrant/scripts/utils/isInstalled.sh
+. /tmp/vagrant/scripts/utils/isInstalled.sh
 
+# see https://www.linuxbabe.com/ubuntu/install-google-chrome-ubuntu-16-04-lts
 install_google-chrome() {
 	package=google-chrome-stable
 
@@ -14,4 +15,6 @@ install_google-chrome() {
 
 	# INSTALL
 	apt-get update && apt-get install -y $package
+
+	rm /etc/apt/sources.list.d/google-chrome.list
 }

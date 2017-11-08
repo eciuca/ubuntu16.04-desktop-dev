@@ -1,5 +1,5 @@
 #!/bin/sh
-. /home/vagrant/scripts/utils/isInstalled.sh
+. /tmp/vagrant/scripts/utils/isInstalled.sh
 
 install_docker() {
 	package=docker-ce
@@ -17,7 +17,7 @@ install_docker() {
 	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 	# INSTALL
-	apt-get update &&apt-get install -y $package
+	apt-get update && apt-get install -y $package docker-compose
 
 	# CONFIGURE
 	gpasswd -a vagrant docker

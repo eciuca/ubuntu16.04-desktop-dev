@@ -1,5 +1,5 @@
 #!/bin/sh
-. /home/vagrant/scripts/utils/isInstalled.sh
+. /tmp/vagrant/scripts/utils/isInstalled.sh
 
 install_opera() {
 	package=opera

@@ -1,12 +1,12 @@
 #!/bin/sh
-. /home/vagrant/scripts/utils/isInstalled.sh
-
-package=maven
+. /tmp/vagrant/scripts/utils/isInstalled.sh
 
 install_maven() {
-        if isInstalled $package; then return; fi
-        echo "Installing and configuring Maven (package: $package)..."
+	package=maven
 
-        # INSTALL
-        apt-get install -y $package
+    if isInstalled $package; then return; fi
+    echo "Installing and configuring Maven (package: $package)..."
+
+    # INSTALL
+    apt-get install -y $package
 }

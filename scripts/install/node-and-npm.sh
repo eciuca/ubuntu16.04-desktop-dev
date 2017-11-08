@@ -1,7 +1,7 @@
 #!/bin/sh
-. /home/vagrant/scripts/utils/isInstalled.sh
+. /tmp/vagrant/scripts/utils/isInstalled.sh
 
-install_nodejs() {
+install_node-and-npm() {
 	package=nodejs
 
 	if isInstalled $package; then return; fi

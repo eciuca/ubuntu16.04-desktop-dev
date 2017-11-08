@@ -1,12 +1,12 @@
 #!/bin/sh
 . /tmp/vagrant/scripts/utils/isInstalled.sh
 
-install_jdk7() {
-	package=openjdk-7-jdk
+install_guake() {
+	package=guake
 
 	if isInstalled $package; then return; fi
-	echo "Installing and configuring Open JDK 7 (package: $package)..."
-
+	echo "Installing and configuring Guake Terminal (package: $package)...";
+	
 	# INSTALL
 	apt-get install -y $package
 }
