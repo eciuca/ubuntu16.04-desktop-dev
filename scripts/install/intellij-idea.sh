@@ -1,6 +1,9 @@
 #!/bin/sh
 
 install_intellij-idea() {
+
+	if [ -e "/usr/local/bin/idea" ]; then return; fi
+
 	echo "Installing IntelliJ IDEA..."
 	#[ $(id -u) != "0" ] && exec sudo "$0" "$@"
 

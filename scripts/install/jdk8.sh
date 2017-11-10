@@ -1,7 +1,6 @@
 #!/bin/sh
 . /tmp/vagrant/scripts/utils/isInstalled.sh
 
-
 install_jdk8() {
 	package=openjdk-8-jdk
 

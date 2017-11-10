@@ -9,49 +9,27 @@ Vagrant.configure(2) do |config|
     #
     #   # Customize the amount of memory on the VM:
     vb.memory = "8192"
-    config.vm.synced_folder "../synced_folders/vagrant_home", "/home/vagrant"
+    config.vm.synced_folder "./vagrant_home", "/home/vagrant"
   end
 
   config.vm.provision "file", source: "./scripts", destination: "/tmp/vagrant/scripts"
 
   config.vm.provision "shell", inline: <<-SHELL
 
-    . /tmp/vagrant/scripts/install/google-chrome.sh
-    . /tmp/vagrant/scripts/install/opera.sh
-    . /tmp/vagrant/scripts/install/sublime-text-3.sh
-    . /tmp/vagrant/scripts/install/git.sh
-    . /tmp/vagrant/scripts/install/docker.sh
-    . /tmp/vagrant/scripts/install/jdk7.sh
-    . /tmp/vagrant/scripts/install/jdk8.sh
-    . /tmp/vagrant/scripts/install/maven.sh
-    . /tmp/vagrant/scripts/install/node-and-npm.sh
-    . /tmp/vagrant/scripts/install/angular-cli.sh
-    . /tmp/vagrant/scripts/install/pip.sh
-    . /tmp/vagrant/scripts/install/aws-cli.sh
-    . /tmp/vagrant/scripts/install/mongo.sh
-    . /tmp/vagrant/scripts/install/intellij-idea2.sh
-    . /tmp/vagrant/scripts/install/softether-vpn.sh
-    . /tmp/vagrant/scripts/install/guake.sh
-    . /tmp/vagrant/scripts/prepare.sh
-    . /tmp/vagrant/scripts/utils/install-packages.sh
+    . /tmp/vagrant/scripts/utils/before.sh;
+    . /tmp/vagrant/scripts/utils/import-install-scripts.sh;
+    . /tmp/vagrant/scripts/utils/install-packages.sh;
+    . /tmp/vagrant/scripts/utils/after.sh;
 
-    systemctl disable apt-daily.service
-    systemctl disable apt-daily.timer
-    systemctl disable unattended-upgrades.service
+    IMPORTS=(angular-cli aws-cli docker git google-chrome gradle guake intellij-idea jdk8 maven mongo node-and-npm nvm opera pip softether-vpn sublime-text-3)
+    PACKAGES=(guake opera sublime-text-3 git docker jdk8 maven gradle node-and-npm nvm angular-cli pip aws-cli mongo softether-vpn intellij-idea google-chrome)
 
-    prepare
+    before
 
-    PACKAGES=(guake opera sublime-text-3 git docker jdk7 jdk8 maven node-and-npm angular-cli pip aws-cli mongo softether-vpn google-chrome)
-
+    import-install-scripts $IMPORTS
     install-packages $PACKAGES
 
-    #echo "Executing apt-get upgrade -y >>>>>>>>>>>>>>>>>>>>>>>"
-    #DEBIAN_FRONTEND=noninteractive
-    #apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
-
-    systemctl enable apt-daily.service
-    systemctl enable apt-daily.timer
-    systemctl enable unattended-upgrades.service
+    after
 
    SHELL
 end

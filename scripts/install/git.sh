@@ -13,9 +13,9 @@ install_git() {
 	# INSTALL
 	apt-get install -y git-daemon-sysvinit git-all
 
-	# CONFIGURE
-	git config --global user.name "Emanuel Ciuca"
-	git config --global user.email "emanuel@webgenerals.com"
+	# CONFIGURE - this should be done by the box user on the first run
+	# git config --global user.name "FirstName LastName"
+	# git config --global user.email "email@example.com"
 
 	git config --global alias.co checkout
 	git config --global alias.br branch
