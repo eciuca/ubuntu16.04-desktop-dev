@@ -47,11 +47,21 @@
 
 * You can either run ``vagrant up``  or create your own Vagrant file to start from an already built Vagrant box:
 ````
+Vagrant.configure(2) do |config|
 
+  config.vm.box = "eciuca/ubuntu1604-dev-desktop"
+  config.vm.box_version = "0.1.0"
+
+end
 ````
-* After the Virtual machine is created you need to configure the following tools:
+* After the Virtual machine is created you can login with the following credentials:
 ````
-- Git (user name and email)
+user: vagrant
+password: vagrant
+````
+* The following tools need to be configured:
+````
+- Git (user name, email and ssh key)
 - IntelliJ IDEA
 - AWS CLI credentials
 - SoftEther VPN Client
