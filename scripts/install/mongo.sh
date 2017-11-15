@@ -1,7 +1,9 @@
 #!/bin/sh
 
 install_mongo() {
-	docker run --name local-mongo -p 27017:27017 -d mongo
+	mkdir -p /home/vagrant/mongo-data
+	
+	docker run --name local-mongo -p 27017:27017 -v /home/vagrant/mongo-data:/data/db -d mongo
 
 	if [ -e "/opt/mongobooster/mongobooster-4.1.2-x86_64.AppImage" ]; then return; fi
 

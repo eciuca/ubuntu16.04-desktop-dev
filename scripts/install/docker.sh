@@ -20,5 +20,5 @@ install_docker() {
 	apt-get update && apt-get install -y $package docker-compose
 
 	# CONFIGURE
-	gpasswd -a vagrant docker
+	usermod -aG docker vagrant
 }
