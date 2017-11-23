@@ -8,8 +8,9 @@ install_node-and-npm() {
 	echo "Installing and configuring Node JS (package: $package)..."
 
 	# PREPARE
-	curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh | bash -E nodesource_setup.sh
+	curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+	apt-get install -y nodejs
 
 	# INSTALL
-	apt-get update && apt-get install -y $package build-essential
+	# apt-get update && apt-get install -y $package build-essential
 }

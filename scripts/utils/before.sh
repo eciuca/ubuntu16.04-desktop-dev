@@ -12,4 +12,6 @@ before()
 	apt-get install htop
 
 	apt-get autoremove -y
+
+	apt-get update
 }
