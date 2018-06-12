@@ -1,6 +1,6 @@
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "boxcutter/ubuntu1604-desktop"
+  config.vm.box = "box-cutter/ubuntu1604-desktop"
   #config.vm.box_version = "2.0.26"
   config.ssh.username = "vagrant"
   config.ssh.password = "vagrant"
